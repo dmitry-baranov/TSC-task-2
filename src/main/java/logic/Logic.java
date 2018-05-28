@@ -3,10 +3,7 @@ package logic;
 import data.Data;
 import data.ResultData;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Logic {
     public List<ResultData> startArrayList(List<Data> listA, List<Data> listB) {
@@ -26,6 +23,8 @@ public class Logic {
     }
 
     public List<ResultData> startLinkedList(List<Data> listA, List<Data> listB) {
+        Collections.sort(listA);
+        Collections.sort(listB);
         List<ResultData> resultList = new ArrayList<ResultData>();
         for (Data dataB : listB) {
             int sizeResult = resultList.size();

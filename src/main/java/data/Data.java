@@ -1,6 +1,6 @@
 package data;
 
-public class Data implements Comparable {
+public class Data implements Comparable<Data> {
 
     private int id;
     private String value;
@@ -26,7 +26,7 @@ public class Data implements Comparable {
         this.value = value;
     }
 
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Data o) {
+        return (this.id < o.id ) ? -1: (this.id > o.id ) ? 1:0 ;
     }
 }
