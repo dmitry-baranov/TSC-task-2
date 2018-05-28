@@ -2,7 +2,7 @@ package uInteraction;
 
 import errors.MyException;
 import errors.Response;
-import uInteraction.data.Data;
+import data.Data;
 
 import java.io.*;
 import java.util.ArrayList;

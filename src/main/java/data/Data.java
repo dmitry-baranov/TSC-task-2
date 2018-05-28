@@ -1,6 +1,10 @@
-package uInteraction.data;
+package data;
 
-public class Data {
+public class Data implements Comparable {
+
+    private int id;
+    private String value;
+
     public Data(int id, String value) {
         this.id = id;
         this.value = value;
@@ -22,6 +26,7 @@ public class Data {
         this.value = value;
     }
 
-    private int id;
-    private String value;
+    public int compareTo(Object o) {
+        return 0;
+    }
 }
