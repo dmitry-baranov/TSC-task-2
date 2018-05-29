@@ -1,7 +1,6 @@
 package uInteraction;
 
 import data.ResultData;
-
 import java.util.List;
 import java.util.Map;
 
@@ -21,5 +20,4 @@ public class Write {
                     + entry.getValue().getValueA() + "\t" + entry.getValue().getValueB());
         }
     }
-
 }

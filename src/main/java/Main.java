@@ -1,10 +1,5 @@
-import data.Data;
-import data.ResultData;
-import errors.MyException;
-import logic.Logic;
-import uInteraction.Read;
 
-import java.util.*;
+import logic.Logic;
 
 public class Main {
 

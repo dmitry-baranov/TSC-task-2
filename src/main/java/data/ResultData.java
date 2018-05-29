@@ -36,9 +36,5 @@ public class ResultData {
     public void setValueB(String valueB) {
         this.valueB = valueB;
     }
-
-
-    public int compareTo(Object o) {
-        return 0;
-    }
+    
 }

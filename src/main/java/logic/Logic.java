@@ -6,7 +6,6 @@ import errors.MyException;
 import transform.mapper;
 import uInteraction.Read;
 import uInteraction.Write;
-
 import java.util.*;
 
 public class Logic {
