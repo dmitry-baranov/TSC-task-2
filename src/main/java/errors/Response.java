@@ -25,5 +25,4 @@ public enum Response {
         this.errorMessage = errorMessage;
     }
 
-
 }
