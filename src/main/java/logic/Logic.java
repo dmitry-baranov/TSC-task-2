@@ -52,16 +52,16 @@ public class Logic {
         List<ResultData> resultList = new LinkedList<ResultData>();
         Collections.sort(listA);
         Collections.sort(listB);
-        Iterator<Data> iteratorA = listA.iterator();
-        Iterator<Data> iteratorB = listB.iterator();
-        if (listA.size() == 0 && listB.size() == 0) {
-            return resultList;
-        } else if (listA.size() == 0) {
-            while (iteratorB.hasNext()) {
-                Data dataB = iteratorB.next();
-                resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
-            }
-        } else {
+        ListIterator<Data> iteratorA = listA.listIterator();
+        ListIterator<Data> iteratorB = listB.listIterator();
+//        if (listA.size() == 0 && listB.size() == 0) {
+//            return resultList;
+//        } else if (listA.size() == 0) {
+//            while (iteratorB.hasNext()) {
+//                Data dataB = iteratorB.next();
+//                resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
+//            }
+//        } else {
             Data dataA = iteratorA.next();
             Data dataB = iteratorB.next();
             int j = 0;
@@ -76,11 +76,16 @@ public class Logic {
                     if (j == 0) {
                         resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
                         j = 0;
-                        i = 0;
                     }
                     if (iteratorB.hasNext()) {
                         dataB = iteratorB.next();
                         j = 0;
+                        if (iteratorA.hasPrevious()) {
+                            dataA = iteratorA.previous();
+                        }
+                        while (dataA.getId() == dataB.getId() && iteratorA.hasPrevious()) {
+                            dataA = iteratorA.previous();
+                        }
                     }
                 } else if (i == 0){
                     resultList.add(new ResultData(dataB.getId(), dataA.getValue(), dataB.getValue()));
@@ -91,7 +96,7 @@ public class Logic {
             if (!(iteratorB.hasNext() || i >= 0) && j ==0) {
                 resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
             }
-        }
+//        }
         return resultList;
     }
 
