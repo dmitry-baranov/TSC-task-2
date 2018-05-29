@@ -8,16 +8,19 @@ public class Write {
     public static void writeData(List<ResultData> list) {
         System.out.println("Результат:\nID\tA.VALUE\tB.VALUE");
         for (ResultData e : list) {
-            System.out.println("\n" + e.getId() + "\t"
+            System.out.println(e.getId() + "\t"
                     + e.getValueA() + "\t" + e.getValueB());
         }
     }
 
-    public static void writeData(Map<Integer, ResultData> map) {
+    public static void writeData(Map<Integer, List<String>> map) {
         System.out.println("Результат:\nID\tA.VALUE\tB.VALUE");
-        for (Map.Entry<Integer,ResultData> entry: map.entrySet()) {
-            System.out.println("\n" + entry.getValue().getId() + "\t"
-                    + entry.getValue().getValueA() + "\t" + entry.getValue().getValueB());
+        for (Map.Entry<Integer,List<String>> entry: map.entrySet()) {
+            for (String s : entry.getValue()) {
+                System.out.println(entry.getKey() + "\t"
+                        + s);
+            }
+
         }
     }
 }

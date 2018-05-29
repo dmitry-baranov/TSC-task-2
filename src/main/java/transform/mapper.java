@@ -12,10 +12,13 @@ public class mapper {
         linkedList.addAll(list);
         return (List<Data>) linkedList;
     }
-    public static Map<Integer, Data> fromArrayListToMap(List<Data> list) {
-        Map<Integer, Data> map = new HashMap<Integer, Data>();
-        for (Data A : list) {
-            map.put(map.size(), A);
+    public static Map<Integer, List<String>> fromArrayListToMap(List<Data> list) {
+        Map<Integer, List<String>> map = new HashMap<Integer, List<String>>();
+        for (Data a : list) {
+            if (!map.containsKey(a.getId())) {
+                map.put(a.getId(), new LinkedList<String>());
+            }
+            map.get(a.getId()).add(a.getValue());
         }
         return map;
     }

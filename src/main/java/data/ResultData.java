@@ -36,5 +36,5 @@ public class ResultData {
     public void setValueB(String valueB) {
         this.valueB = valueB;
     }
-    
+
 }
