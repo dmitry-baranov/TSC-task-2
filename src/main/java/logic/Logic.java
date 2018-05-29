@@ -47,23 +47,6 @@ public class Logic {
         return resultList;
     }
 
-//    private List<ResultData> startLinkedList(List<Data> listA, List<Data> listB) {
-//        Collections.sort(listA);
-//        Collections.sort(listB);
-//        List<ResultData> resultList = new LinkedList<ResultData>();
-//        for (Data dataB : listB) {
-//            int sizeResult = resultList.size();
-//            for (Data dataA : listA) {
-//                if (dataB.getId() == dataA.getId()) {
-//                    resultList.add(new ResultData(dataB.getId(), dataA.getValue(), dataB.getValue()));
-//                }
-//            }
-//            if (sizeResult == resultList.size()) {
-//                resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
-//            }
-//        }
-//        return resultList;
-//    }
 
     private List<ResultData> startLinkedList(List<Data> listA, List<Data> listB) {
         List<ResultData> resultList = new LinkedList<ResultData>();
@@ -112,23 +95,6 @@ public class Logic {
         return resultList;
     }
 
-//    private Map<Integer, ResultData> startMap(Map<Integer, Data> mapA, Map<Integer, Data> mapB) {
-//        Map<Integer, ResultData> resultMap = new HashMap<Integer, ResultData>();
-//        for (Map.Entry<Integer, Data> dataB : mapB.entrySet()) {
-//            int sizeResult = resultMap.size();
-//            for (Map.Entry<Integer, Data> dataA : mapA.entrySet()) {
-//                if (dataB.getValue().getId() == dataA.getValue().getId()) {
-//                    resultMap.put(resultMap.size(), new ResultData(dataB.getValue().getId(),
-//                            dataA.getValue().getValue(), dataB.getValue().getValue()));
-//                }
-//            }
-//            if (sizeResult == resultMap.size()) {
-//                resultMap.put(resultMap.size(), new ResultData(dataB.getValue().getId(),
-//                        " ", dataB.getValue().getValue()));
-//            }
-//        }
-//        return resultMap;
-//    }
 
     private Map<Integer, List<String>> startMap(Map<Integer, List<String>> mapA, Map<Integer, List<String>> mapB) {
         Map<Integer, List<String>> resultMap = new HashMap<Integer, List<String>>();

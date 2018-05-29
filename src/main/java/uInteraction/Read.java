@@ -35,20 +35,4 @@ public class Read {
         }
     }
 
-//    public static void writeFile(String fileName, List<ResultData> resultList) {
-//        PrintWriter writer = null;
-//        try {
-//            writer = new PrintWriter(fileName, "UTF-8");
-//        } catch (FileNotFoundException e) {
-//            throw new MyException(Response.RESULT_FILE_NOT_FOUND);
-//        } catch (UnsupportedEncodingException e) {
-//            throw new MyException(Response.UNSUPPORTED_ENCODING_EXCEPTION);
-//        }
-//        writer.println("Результат:\nID\tA.VALUE\tB.VALUE");
-//        for (ResultData resultData : resultList) {
-//            writer.print("\n" + resultData.getId() + "\t"
-//                    + resultData.getValueA() + "\t" + resultData.getValueB());
-//        }
-//        writer.close();
-//    }
 }
