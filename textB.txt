@@ -1,9 +1,10 @@
 B
 ID	VALUE
-1	C
 2	A
 2	A
 2	A
 4	B
 3	E
+6	A
+6	A
 6	A

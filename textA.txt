@@ -1,6 +1,8 @@
 A
 ID	VALUE
 6	A
+6	B
+6	C
 2	C
 2	C
 2	C

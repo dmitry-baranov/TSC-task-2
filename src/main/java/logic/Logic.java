@@ -51,37 +51,38 @@ public class Logic {
 
     private List<ResultData> startLinkedList(List<Data> listA, List<Data> listB) {
         List<ResultData> resultList = new LinkedList<ResultData>();
+        listA.add(new Data(0, "Check"));
+        listB.add(new Data(0, "Check"));
         ListIterator<Data> iteratorA = listA.listIterator();
         ListIterator<Data> iteratorB = listB.listIterator();
         Data dataA = iteratorA.next();
         Data dataB = iteratorB.next();
-        boolean whileCheck = true;
         int addIndicator = 0;
         int compareTo = 0;
-        while (whileCheck) {
-            whileCheck = (iteratorB.hasNext() || iteratorA.hasNext()) && (iteratorB.hasNext() || compareTo >= 0);
+        while (iteratorB.hasNext()) {
             compareTo = dataB.compareTo(dataA);
-            if (compareTo > 0) {
-                if (iteratorA.hasNext()) {
-                    dataA = iteratorA.next();
-                    whileCheck = true;
-                }
-            } else if (compareTo < 0) {
+            if (compareTo > 0 && iteratorA.hasNext()) {
+                dataA = iteratorA.next();
+            } else if (compareTo < 0 || dataA.getValue().equals("Check")) {
                 if (addIndicator == 0) {
                     resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
                     addIndicator = 0;
-                    dataB = iteratorB.next();
+                    if (iteratorB.hasNext()) {
+                        dataB = iteratorB.next();
+                    }
                 } else {
                     addIndicator = 0;
-                    dataB = iteratorB.next();
-                    int tIndicator = 0;
+                    if (iteratorB.hasNext()) {
+                        dataB = iteratorB.next();
+                    }
+                    dataA = iteratorA.previous();
+                    if (iteratorA.hasPrevious()) {
+                        dataA = iteratorA.previous();
+                    }
                     while ((dataA.getId() >= dataB.getId()) && iteratorA.hasPrevious()) {
                         dataA = iteratorA.previous();
-                        tIndicator++;
                     }
-                    if (tIndicator != 0) {
-                        dataA = iteratorA.next();
-                    }
+                    dataA = iteratorA.next();
                 }
             } else {
                 resultList.add(new ResultData(dataB.getId(), dataA.getValue(), dataB.getValue()));
@@ -90,9 +91,6 @@ public class Logic {
                 }
                 addIndicator++;
             }
-        }
-        if (!(iteratorB.hasNext() || compareTo >= 0)) {
-            resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
         }
         return resultList;
     }
