@@ -58,7 +58,7 @@ public class Logic {
         Data dataA = iteratorA.next();
         Data dataB = iteratorB.next();
         int addIndicator = 0;
-        int compareTo = 0;
+        int compareTo;
         while (iteratorB.hasNext()) {
             compareTo = dataB.compareTo(dataA);
             if (compareTo > 0 && iteratorA.hasNext()) {
@@ -67,14 +67,10 @@ public class Logic {
                 if (addIndicator == 0) {
                     resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
                     addIndicator = 0;
-                    if (iteratorB.hasNext()) {
-                        dataB = iteratorB.next();
-                    }
+                    dataB = iteratorB.next();
                 } else {
                     addIndicator = 0;
-                    if (iteratorB.hasNext()) {
-                        dataB = iteratorB.next();
-                    }
+                    dataB = iteratorB.next();
                     dataA = iteratorA.previous();
                     if (iteratorA.hasPrevious()) {
                         dataA = iteratorA.previous();
