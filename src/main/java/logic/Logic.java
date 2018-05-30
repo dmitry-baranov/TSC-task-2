@@ -6,6 +6,7 @@ import errors.MyException;
 import transform.mapper;
 import uInteraction.Read;
 import uInteraction.Write;
+
 import java.util.*;
 
 public class Logic {
@@ -50,53 +51,49 @@ public class Logic {
 
     private List<ResultData> startLinkedList(List<Data> listA, List<Data> listB) {
         List<ResultData> resultList = new LinkedList<ResultData>();
-        Collections.sort(listA);
-        Collections.sort(listB);
         ListIterator<Data> iteratorA = listA.listIterator();
         ListIterator<Data> iteratorB = listB.listIterator();
-//        if (listA.size() == 0 && listB.size() == 0) {
-//            return resultList;
-//        } else if (listA.size() == 0) {
-//            while (iteratorB.hasNext()) {
-//                Data dataB = iteratorB.next();
-//                resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
-//            }
-//        } else {
-            Data dataA = iteratorA.next();
-            Data dataB = iteratorB.next();
-            int j = 0;
-            int i = 0;
-            while ((iteratorB.hasNext() || iteratorA.hasNext()) && (iteratorB.hasNext() || i>=0)) {
-                i = dataB.compareTo(dataA);
-                if (i > 0) {
-                    if (iteratorA.hasNext()) {
+        Data dataA = iteratorA.next();
+        Data dataB = iteratorB.next();
+        boolean whileCheck = true;
+        int addIndicator = 0;
+        int compareTo = 0;
+        while (whileCheck) {
+            whileCheck = (iteratorB.hasNext() || iteratorA.hasNext()) && (iteratorB.hasNext() || compareTo >= 0);
+            compareTo = dataB.compareTo(dataA);
+            if (compareTo > 0) {
+                if (iteratorA.hasNext()) {
+                    dataA = iteratorA.next();
+                    whileCheck = true;
+                }
+            } else if (compareTo < 0) {
+                if (addIndicator == 0) {
+                    resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
+                    addIndicator = 0;
+                    dataB = iteratorB.next();
+                } else {
+                    addIndicator = 0;
+                    dataB = iteratorB.next();
+                    int tIndicator = 0;
+                    while ((dataA.getId() >= dataB.getId()) && iteratorA.hasPrevious()) {
+                        dataA = iteratorA.previous();
+                        tIndicator++;
+                    }
+                    if (tIndicator != 0) {
                         dataA = iteratorA.next();
                     }
-                } else if (i < 0) {
-                    if (j == 0) {
-                        resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
-                        j = 0;
-                    }
-                    if (iteratorB.hasNext()) {
-                        dataB = iteratorB.next();
-                        j = 0;
-                        if (iteratorA.hasPrevious()) {
-                            dataA = iteratorA.previous();
-                        }
-                        while (dataA.getId() == dataB.getId() && iteratorA.hasPrevious()) {
-                            dataA = iteratorA.previous();
-                        }
-                    }
-                } else if (i == 0){
-                    resultList.add(new ResultData(dataB.getId(), dataA.getValue(), dataB.getValue()));
-                    dataA = iteratorA.next();
-                    j++;
                 }
+            } else {
+                resultList.add(new ResultData(dataB.getId(), dataA.getValue(), dataB.getValue()));
+                if (iteratorA.hasNext()) {
+                    dataA = iteratorA.next();
+                }
+                addIndicator++;
             }
-            if (!(iteratorB.hasNext() || i >= 0) && j ==0) {
-                resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
-            }
-//        }
+        }
+        if (!(iteratorB.hasNext() || compareTo >= 0)) {
+            resultList.add(new ResultData(dataB.getId(), " ", dataB.getValue()));
+        }
         return resultList;
     }
 
@@ -123,5 +120,4 @@ public class Logic {
         }
         return resultMap;
     }
-
 }

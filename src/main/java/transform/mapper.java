@@ -1,15 +1,14 @@
 package transform;
 
 import data.Data;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 public class mapper {
     public static List<Data> fromArrayListToLinkedList(List<Data> list) {
         List<Data> linkedList = new LinkedList<Data>();
         linkedList.addAll(list);
+        Collections.sort(linkedList);
         return (List<Data>) linkedList;
     }
     public static Map<Integer, List<String>> fromArrayListToMap(List<Data> list) {
